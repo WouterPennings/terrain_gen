@@ -1,0 +1,16 @@
+C:\Users\woute\Documents\programming\personal\terrain_gen\bin\Debug\net6.0\terrain_gen.exe
+C:\Users\woute\Documents\programming\personal\terrain_gen\bin\Debug\net6.0\terrain_gen.deps.json
+C:\Users\woute\Documents\programming\personal\terrain_gen\bin\Debug\net6.0\terrain_gen.runtimeconfig.json
+C:\Users\woute\Documents\programming\personal\terrain_gen\bin\Debug\net6.0\terrain_gen.dll
+C:\Users\woute\Documents\programming\personal\terrain_gen\bin\Debug\net6.0\ref\terrain_gen.dll
+C:\Users\woute\Documents\programming\personal\terrain_gen\bin\Debug\net6.0\terrain_gen.pdb
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.GlobalUsings.g.cs
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.csproj.AssemblyReference.cache
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.AssemblyInfoInputs.cache
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.AssemblyInfo.cs
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.csproj.CoreCompileInputs.cache
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.dll
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\ref\terrain_gen.dll
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.pdb
+C:\Users\woute\Documents\programming\personal\terrain_gen\obj\Debug\net6.0\terrain_gen.genruntimeconfig.cache
