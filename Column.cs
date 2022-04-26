@@ -19,7 +19,7 @@ namespace terrain_gen
             string str = "";
 
             foreach (Node n in Nodes) 
-                str += $"{n.ToString()}\n";
+                str += $"{n.ToString()}";
             
             return str;
         }
