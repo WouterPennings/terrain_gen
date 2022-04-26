@@ -23,35 +23,43 @@ namespace terrain_gen
         public void Smooth(int size = 1)
         {
             Matrix m = new Matrix();
-            for (int j = 1; j < Columns[0].Nodes.Count - 1; j++)
+
+            for (int i = 0; i < Columns.Count - 2; i++)
+            {
+                m.Columns.Add(new Column());
+            }
+            
+            for (int nIndex = 1; nIndex < Columns[0].Nodes.Count - 1; nIndex++)
             {
                 Column c = new Column();
-                for (int i = 1; i < Columns.Count - 1; i++)
+                Node n = new Node(1);
+                for (int cIndex = 1; cIndex < Columns.Count - 1; cIndex++)
                 {
                     List<int> values = new List<int>();
-                    values.Add(Columns[i - 1].Nodes[j - 1].Value);
-                    values.Add(Columns[i - 1].Nodes[j].Value);
-                    values.Add(Columns[i - 1].Nodes[j + 1].Value);
+                    values.Add(Columns[cIndex - 1].Nodes[nIndex - 1].Value);
+                    values.Add(Columns[cIndex - 1].Nodes[nIndex].Value);
+                    values.Add(Columns[cIndex - 1].Nodes[nIndex + 1].Value);
                 
-                    values.Add(Columns[i].Nodes[j - 1].Value);
-                    values.Add(Columns[i].Nodes[j].Value);
-                    values.Add(Columns[i].Nodes[j + 1].Value);
+                    values.Add(Columns[cIndex].Nodes[nIndex - 1].Value);
+                    values.Add(Columns[cIndex].Nodes[nIndex].Value);
+                    values.Add(Columns[cIndex].Nodes[nIndex + 1].Value);
                 
-                    values.Add(Columns[i + 1].Nodes[j - 1].Value);
-                    values.Add(Columns[i + 1].Nodes[j].Value);
-                    values.Add(Columns[i + 1].Nodes[j + 1].Value);
-                    c.Nodes.Add(new Node(Convert.ToInt32(values.Average())));
+                    values.Add(Columns[cIndex + 1].Nodes[nIndex - 1].Value);
+                    values.Add(Columns[cIndex + 1].Nodes[nIndex].Value);
+                    values.Add(Columns[cIndex + 1].Nodes[nIndex + 1].Value);
+                    n = new Node(Convert.ToInt32(values.Average()));
+                    m.Columns[cIndex - 1].Nodes.Add(n);
                 }
-                m.Columns.Add(c);
+                
             }
 
             Columns = m.Columns;
         }
-        
-        // I wish I had worked with rows instead of columns... 
-        public override string ToString()
+
+        public string GenerateTerrain()
         {
-            char[] greyScaleChars = new char[]{'.', ':', '-', '=', '+', '*', '#', '%', '@'};
+            //char[] greyScaleChars = new char[]{'.', ':', '-', '=', '+', '*', '#', '%', '@'};
+            char[] greyScaleChars = new char[]{'$', '@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', '"', '^', '`', '\'', '.', ' '};
             
             string str = "";
             
@@ -60,6 +68,24 @@ namespace terrain_gen
                 for (int i = 0; i < Columns.Count; i++)
                 {
                     str += $"{greyScaleChars[Columns[i].Nodes[j].Value]}";
+                }
+
+                str += "\n";
+            }
+            
+            return str;
+        }
+        
+        // I wish I had worked with rows instead of columns... 
+        public override string ToString()
+        {
+            string str = "";
+            
+            for (int j = 0; j < Columns[0].Nodes.Count; j++)
+            {
+                for (int i = 0; i < Columns.Count; i++)
+                {
+                    str += $"{Columns[i].Nodes[j].Value}";
                 }
 
                 str += "\n";
