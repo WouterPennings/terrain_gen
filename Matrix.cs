@@ -10,14 +10,14 @@ namespace terrain_gen
 
         private Matrix() { }
         
-        public Matrix(int xAxis, int yAxis, int minHeight, int maxHeight, int filterSize = 0)
+        public Matrix(int xAxis, int yAxis, int minHeight, int maxHeight, int radiusWindow = 0)
         {
             for (int i = 0; i < xAxis + 1; i++)
                 Columns.Add(new Column(yAxis, minHeight, maxHeight));
 
-            if (filterSize < 1) return;
+            if (radiusWindow < 1) return;
             
-            Smooth(filterSize);
+            Smooth(radiusWindow);
         }
 
         public void Smooth(int radiusWindow = 1)
@@ -53,7 +53,7 @@ namespace terrain_gen
 
         public string GenerateTerrain()
         {
-            char[] greyScaleChars = new char[]{'$', '@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', '"', '^', '`', '\'', '.', ' '}.Reverse().ToArray();
+            char[] greyScaleChars = new char[]{'$', '@', 'B', '%', '8', '&', 'W', 'M', '#', '*', 'o', 'a', 'h', 'k', 'b', 'd', 'p', 'q', 'w', 'm', 'Z', 'O', '0', 'Q', 'L', 'C', 'J', 'U', 'Y', 'X', 'z', 'c', 'v', 'u', 'n', 'x', 'r', 'j', 'f', 't', '/', '\\', '|', '(', ')', '1', '{', '}', '[', ']', '?', '-', '_', '+', '~', '<', '>', 'i', '!', 'l', 'I', ';', ':', ',', '"', '^', '`', '\'', '.', ' '};
             
             string str = "";
             
