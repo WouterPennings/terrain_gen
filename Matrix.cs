@@ -12,7 +12,7 @@ namespace terrain_gen
         
         public Matrix(int xAxis, int yAxis, int minHeight, int maxHeight, int filterSize = 0)
         {
-            for (int i = 0; i < xAxis; i++)
+            for (int i = 0; i < xAxis + 1; i++)
                 Columns.Add(new Column(yAxis, minHeight, maxHeight));
 
             if (filterSize < 1) return;
@@ -20,35 +20,30 @@ namespace terrain_gen
             Smooth(filterSize);
         }
 
-        public void Smooth(int size = 1)
+        public void Smooth(int radiusWindow = 1)
         {
             Matrix m = new Matrix();
 
-            for (int i = 0; i < Columns.Count - 2; i++)
-            {
+            for (int i = 0; i < Columns.Count - radiusWindow * 2; i++)
                 m.Columns.Add(new Column());
-            }
-            
-            for (int nIndex = 1; nIndex < Columns[0].Nodes.Count - 1; nIndex++)
+
+            for (int nIndex = radiusWindow; nIndex < Columns[0].Nodes.Count - radiusWindow; nIndex++)
             {
                 Column c = new Column();
                 Node n = new Node(1);
-                for (int cIndex = 1; cIndex < Columns.Count - 1; cIndex++)
+                for (int cIndex = radiusWindow; cIndex < Columns.Count - radiusWindow - 1; cIndex++)
                 {
                     List<int> values = new List<int>();
-                    values.Add(Columns[cIndex - 1].Nodes[nIndex - 1].Value);
-                    values.Add(Columns[cIndex - 1].Nodes[nIndex].Value);
-                    values.Add(Columns[cIndex - 1].Nodes[nIndex + 1].Value);
-                
-                    values.Add(Columns[cIndex].Nodes[nIndex - 1].Value);
-                    values.Add(Columns[cIndex].Nodes[nIndex].Value);
-                    values.Add(Columns[cIndex].Nodes[nIndex + 1].Value);
-                
-                    values.Add(Columns[cIndex + 1].Nodes[nIndex - 1].Value);
-                    values.Add(Columns[cIndex + 1].Nodes[nIndex].Value);
-                    values.Add(Columns[cIndex + 1].Nodes[nIndex + 1].Value);
+                    for (int xDiv = radiusWindow * -1; xDiv < radiusWindow + 1; xDiv++)
+                    {
+                        for (int yDiv = radiusWindow * -1; yDiv < radiusWindow + 1; yDiv++)
+                        {
+                            values.Add(Columns[cIndex + xDiv].Nodes[nIndex + yDiv].Value);
+                        }
+                    }
+
                     n = new Node(Convert.ToInt32(values.Average()));
-                    m.Columns[cIndex - 1].Nodes.Add(n);
+                    m.Columns[cIndex - radiusWindow].Nodes.Add(n);
                 }
                 
             }
@@ -63,9 +58,9 @@ namespace terrain_gen
             
             string str = "";
             
-            for (int j = 0; j < Columns[0].Nodes.Count; j++)
+            for (int j = 0; j < Columns[1].Nodes.Count; j++)
             {
-                for (int i = 0; i < Columns.Count; i++)
+                for (int i = 0; i < Columns.Count - 1; i++)
                 {
                     str += $"{greyScaleChars[Columns[i].Nodes[j].Value]}";
                 }

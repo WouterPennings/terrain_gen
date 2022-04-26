@@ -3,13 +3,13 @@ using terrain_gen;
 
 Console.WriteLine("Welcome to a prototype of terrain generation!\n");
 
-int matXSize = 50;
-int matYSize = 25;
+int matXSize = 20;
+int matYSize = 20;
 
 Matrix templateMat = new Matrix(matXSize, matYSize, 0, 70);
 
 Console.WriteLine("Template Matrix: \n\n" + templateMat.GenerateTerrain());
 
-templateMat.Smooth(2);
+templateMat.Smooth(4);
 
-Console.WriteLine("Template Matrix: \n\n" + templateMat.GenerateTerrain());
+Console.WriteLine("Smoothed Matrix: \n\n" + templateMat.GenerateTerrain());
